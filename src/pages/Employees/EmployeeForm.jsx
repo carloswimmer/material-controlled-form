@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import React, { useCallback } from "react";
+import { Box, Grid } from "@material-ui/core";
 
 import { useForm, Form } from "../../components/useForm";
 import Input from "../../components/controls/Input";
@@ -7,6 +7,7 @@ import Radio from "../../components/controls/Radio";
 import Select from "../../components/controls/Select";
 import Checkbox from "../../components/controls/Checkbox";
 import DatePicker from "../../components/controls/DatePicker";
+import Button from "../../components/controls/Button";
 import * as employeeService from "../../services/employeeService";
 
 const genderItems = [
@@ -28,11 +29,17 @@ const initialValues = {
 };
 
 const EmployeeForm = () => {
-  const { values, setValues, handleInputChange } = useForm(initialValues);
+  const { values, setValues, handleInputChange, handleSubmit } = useForm(
+    initialValues
+  );
+
+  const reset = useCallback(() => {
+    setValues(initialValues);
+  }, [setValues]);
 
   return (
     <Form>
-      <Grid container>
+      <Grid container spacing={4}>
         <Grid item xs={6}>
           <Input
             label="Full Name"
@@ -46,8 +53,20 @@ const EmployeeForm = () => {
             value={values.email}
             onChange={handleInputChange}
           />
+          <Input
+            label="Mobile"
+            name="mobile"
+            value={values.mobile}
+            onChange={handleInputChange}
+          />
+          <Input
+            label="City"
+            name="city"
+            value={values.city}
+            onChange={handleInputChange}
+          />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item container xs={6}>
           <Radio
             label="Gender"
             name="gender"
@@ -62,18 +81,38 @@ const EmployeeForm = () => {
             options={employeeService.getDepartmentCollection()}
             onChange={handleInputChange}
           />
-          <Checkbox
-            label="Permanent Employee"
-            name="isPermanent"
-            value={values.isPermanent}
-            onChange={handleInputChange}
-          />
           <DatePicker
             label="Hire Date"
             name="hireDate"
             value={values.hireDate}
             onChange={handleInputChange}
           />
+          <Checkbox
+            label="Permanent Employee"
+            name="isPermanent"
+            value={values.isPermanent}
+            onChange={handleInputChange}
+          />
+          <Box m={1} width={1}>
+            <Grid item container spacing={2} justify="flex-end">
+              <Grid item>
+                <Button
+                  size="large"
+                  color="secondary"
+                  onClick={handleSubmit}
+                  text="Submit"
+                />
+              </Grid>
+              <Grid item>
+                <Button
+                  size="large"
+                  color="default"
+                  onClick={reset}
+                  text="Reset"
+                />
+              </Grid>
+            </Grid>
+          </Box>
         </Grid>
       </Grid>
     </Form>
