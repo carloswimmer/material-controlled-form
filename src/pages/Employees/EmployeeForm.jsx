@@ -5,6 +5,8 @@ import { useForm, Form } from "../../components/useForm";
 import Input from "../../components/controls/Input";
 import Radio from "../../components/controls/Radio";
 import Select from "../../components/controls/Select";
+import Checkbox from "../../components/controls/Checkbox";
+import DatePicker from "../../components/controls/DatePicker";
 import * as employeeService from "../../services/employeeService";
 
 const genderItems = [
@@ -58,6 +60,18 @@ const EmployeeForm = () => {
             name="departmentId"
             value={values.departmentId}
             options={employeeService.getDepartmentCollection()}
+            onChange={handleInputChange}
+          />
+          <Checkbox
+            label="Permanent Employee"
+            name="isPermanent"
+            value={values.isPermanent}
+            onChange={handleInputChange}
+          />
+          <DatePicker
+            label="Hire Date"
+            name="hireDate"
+            value={values.hireDate}
             onChange={handleInputChange}
           />
         </Grid>
