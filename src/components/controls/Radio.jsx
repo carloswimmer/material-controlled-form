@@ -20,7 +20,7 @@ const Radio = (props) => {
         value={value}
         onChange={onChange}
       >
-        {items.map((item, index) => (
+        {items.map((item) => (
           <FormControlLabel
             key={item.id}
             value={item.id}

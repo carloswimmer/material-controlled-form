@@ -4,6 +4,8 @@ import { Grid, makeStyles } from "@material-ui/core";
 import { useForm, Form } from "../../components/useForm";
 import Input from "../../components/controls/Input";
 import Radio from "../../components/controls/Radio";
+import Select from "../../components/controls/Select";
+import * as employeeService from "../../services/employeeService";
 
 const genderItems = [
   { id: "male", title: "Male" },
@@ -49,6 +51,13 @@ const EmployeeForm = () => {
             name="gender"
             value={values.gender}
             items={genderItems}
+            onChange={handleInputChange}
+          />
+          <Select
+            label="Department"
+            name="departmentId"
+            value={values.departmentId}
+            options={employeeService.getDepartmentCollection()}
             onChange={handleInputChange}
           />
         </Grid>
