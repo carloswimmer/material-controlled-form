@@ -29,9 +29,11 @@ const initialValues = {
 };
 
 const EmployeeForm = () => {
-  const { values, setValues, handleInputChange, handleSubmit } = useForm(
-    initialValues
-  );
+  const { values, setValues, handleInputChange } = useForm(initialValues);
+
+  const handleSubmit = useCallback(() => {
+    console.log("submitted: ", values);
+  }, [values]);
 
   const reset = useCallback(() => {
     setValues(initialValues);

@@ -23,15 +23,10 @@ export const useForm = (initialValues) => {
     [values]
   );
 
-  const handleSubmit = useCallback(() => {
-    console.log("submitted: ", values);
-  }, [values]);
-
   return {
     values,
     setValues,
     handleInputChange,
-    handleSubmit,
   };
 };
 
