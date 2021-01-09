@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 
 const Radio = (props) => {
-  const { name, label, value, onChange, items } = props;
+  const { name, label, value, onChange, items, ...others } = props;
 
   return (
     <FormControl component="fieldset">
@@ -19,6 +19,7 @@ const Radio = (props) => {
         name={name}
         value={value}
         onChange={onChange}
+        {...others}
       >
         {items.map((item) => (
           <FormControlLabel

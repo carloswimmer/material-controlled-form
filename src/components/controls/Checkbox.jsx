@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core";
 
 const Checkbox = (props) => {
-  const { name, label, value, onChange } = props;
+  const { name, label, value, onChange, ...others } = props;
 
   const convertValueToChecked = useCallback((name, value) => {
     const convertedEvent = {
@@ -22,13 +22,13 @@ const Checkbox = (props) => {
         control={
           <MuiCheckbox
             name={name}
-            label={label}
             color="primary"
             checked={value}
             onChange={(e) =>
               onChange(convertValueToChecked(name, e.target.checked))
             }
             inputProps={{ "aria-label": "primary checkbox" }}
+            {...others}
           />
         }
         label={label}

@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 
 const Select = (props) => {
-  const { name, label, value, onChange, options } = props;
+  const { name, label, value, onChange, options, ...others } = props;
 
   return (
     <FormControl variant="outlined" fullWidth>
@@ -18,6 +18,7 @@ const Select = (props) => {
         name={name}
         value={value}
         onChange={onChange}
+        {...others}
       >
         <MenuItem value="">None</MenuItem>
         {options.map((item) => (

@@ -6,7 +6,7 @@ import {
 } from "@material-ui/pickers";
 
 const DatePicker = (props) => {
-  const { name, label, value, onChange } = props;
+  const { name, label, value, onChange, ...others } = props;
 
   const convertDateToValue = useCallback((name, value) => {
     const convertedDate = {
@@ -31,6 +31,7 @@ const DatePicker = (props) => {
         KeyboardButtonProps={{
           "aria-label": "change date",
         }}
+        {...others}
       />
     </MuiPickersUtilsProvider>
   );
