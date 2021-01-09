@@ -5,7 +5,6 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import PropTypes from "prop-types";
 
 const PreferencesContext = createContext({
   darkMode: true,

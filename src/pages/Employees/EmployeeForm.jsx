@@ -8,6 +8,7 @@ import Select from "../../components/controls/Select";
 import Checkbox from "../../components/controls/Checkbox";
 import DatePicker from "../../components/controls/DatePicker";
 import Button from "../../components/controls/Button";
+import * as Yup from "yup";
 import * as employeeService from "../../services/employeeService";
 
 const genderItems = [
@@ -29,7 +30,13 @@ const initialValues = {
 };
 
 const EmployeeForm = () => {
-  const { values, setValues, handleInputChange } = useForm(initialValues);
+  const { values, setValues, handleInputChange, handleError, error } = useForm(
+    initialValues
+  );
+
+  const fullNameConstraint = {
+    fullName: Yup.string().required("Required field"),
+  };
 
   const handleSubmit = useCallback(() => {
     console.log("submitted: ", values);
@@ -48,6 +55,8 @@ const EmployeeForm = () => {
             name="fullName"
             value={values.fullName}
             onChange={handleInputChange}
+            onBlur={(e) => handleError(e, fullNameConstraint)}
+            error={error}
           />
           <Input
             label="Email"

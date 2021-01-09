@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { makeStyles } from "@material-ui/core";
+import * as Yup from "yup";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const useForm = (initialValues) => {
   const [values, setValues] = useState(initialValues);
+  const [error, setError] = useState("");
 
   const handleInputChange = useCallback(
     (e) => {
@@ -23,10 +25,31 @@ export const useForm = (initialValues) => {
     [values]
   );
 
+  const handleError = useCallback(async (e, constraint) => {
+    const { name, value } = e.target;
+
+    try {
+      const schema = Yup.object().shape(constraint);
+
+      await schema.validate(
+        { [name]: value },
+        {
+          abortEarly: false,
+        }
+      );
+
+      setError("");
+    } catch (err) {
+      setError(err.errors[0]);
+    }
+  }, []);
+
   return {
     values,
     setValues,
     handleInputChange,
+    handleError,
+    error,
   };
 };
 
