@@ -24,6 +24,7 @@ const DatePicker = (props) => {
         label={label}
         name={name}
         inputVariant="outlined"
+        fullWidth
         format="dd/MM/yyyy"
         value={value}
         onChange={(date) => onChange(convertDateToValue(name, date))}

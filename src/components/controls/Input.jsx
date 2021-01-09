@@ -7,6 +7,7 @@ const Input = (props) => {
   return (
     <TextField
       variant="outlined"
+      fullWidth
       label={label}
       name={name}
       value={value}

@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 import { useForm, Form } from "../../components/useForm";
 import Input from "../../components/controls/Input";
@@ -93,26 +93,24 @@ const EmployeeForm = () => {
             value={values.isPermanent}
             onChange={handleInputChange}
           />
-          <Box m={1} width={1}>
-            <Grid item container spacing={2} justify="flex-end">
-              <Grid item>
-                <Button
-                  size="large"
-                  color="secondary"
-                  onClick={handleSubmit}
-                  text="Submit"
-                />
-              </Grid>
-              <Grid item>
-                <Button
-                  size="large"
-                  color="default"
-                  onClick={reset}
-                  text="Reset"
-                />
-              </Grid>
+          <Grid item container justify="flex-end">
+            <Grid item>
+              <Button
+                size="large"
+                color="secondary"
+                onClick={handleSubmit}
+                text="Submit"
+              />
             </Grid>
-          </Box>
+            <Grid item>
+              <Button
+                size="large"
+                color="default"
+                onClick={reset}
+                text="Reset"
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Form>
